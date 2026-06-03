@@ -9,7 +9,7 @@ const app =express();
 console.log("__dirname:", __dirname);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended: true})); //HTML <form> dan kelgan ma'lumotlarni o'qish uchun.
-app.use(express.json);
+app.use(express.json());
 /** 2-SESSIONS **/
 
 /** 3-VIEWS **/
