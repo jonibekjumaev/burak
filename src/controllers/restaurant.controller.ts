@@ -5,7 +5,8 @@ import Memberservice from "../models/Member.service";
 const restaurantController: T = {};
 restaurantController.goHome = ((req: Request, res: Response) => {
     try {
-            res.send("Home page");
+        console.log("goHome");
+        res.send("Home page");
     } catch (err) {
         console.log("Error, goHome:", err);
     }
@@ -13,7 +14,8 @@ restaurantController.goHome = ((req: Request, res: Response) => {
 
 restaurantController.getLogin = ((req: Request, res: Response) => {
     try {
-            res.send("Login page");
+        console.log("getLogin");
+        res.send("Login page");
     } catch (err) {
         console.log("Error, getLogin:", err);
     }
@@ -21,7 +23,8 @@ restaurantController.getLogin = ((req: Request, res: Response) => {
 
 restaurantController.getSignup = ((req: Request, res: Response) => {
     try {
-            res.send("Sign up page");
+        console.log("getSignup");
+        res.send("Sign up page");
     } catch (err) {
         console.log("Error, getSignup:", err);
     }
