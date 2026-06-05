@@ -8,3 +8,10 @@
     -ERROR handling                 
 
 */
+
+/* 
+    Traditional API
+    REST API
+    GraphQL API
+
+*/
