@@ -9,10 +9,10 @@ import { MORGAN_FORMAT } from "./libs/config";
 /** 1-ENTRANCE **/
 const app =express();
 console.log("__dirname:", __dirname);
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({extended: true})); //HTML <form> dan kelgan ma'lumotlarni o'qish uchun.
-app.use(express.json());
-app.use(morgan(MORGAN_FORMAT));
+app.use(express.static(path.join(__dirname, "public"))); //Publicga ochadi
+app.use(express.urlencoded({extended: true})); //HTML <form> dan kelgan ma'lumotlarni o'qish uchun. Traditional API ni support qiladi.
+app.use(express.json());   //Rest API ni support qiladi
+app.use(morgan(MORGAN_FORMAT)); //Logging standartni quradi
 /** 2-SESSIONS **/
 
 /** 3-VIEWS **/
