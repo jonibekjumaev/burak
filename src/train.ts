@@ -8,3 +8,15 @@
     -ERROR handling                 
 
 */
+
+/* 
+    Traditional API
+    Rest API
+    GraphQL API
+    .....
+*/
+
+/*
+    Traditional FD   => SSR  => EJS
+    Modern FD        => SPA  => REACT
+*/
