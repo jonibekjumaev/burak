@@ -6,9 +6,9 @@ import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 
 import session from "express-session";
-import ConnectMongoDB, { MongoDBStore } from "connect-mongodb-session";
+import ConnectMongoDB from "connect-mongodb-session";
 
-const mongoDBStore = ConnectMongoDB(session);
+const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
     uri: String(process.env.MONGO_URL),
     collection: "session",
