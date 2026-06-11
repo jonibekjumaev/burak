@@ -5,6 +5,15 @@ import routerAdmin from "./router-admin";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 
+import session from "express-session";
+import ConnectMongoDB, { MongoDBStore } from "connect-mongodb-session";
+
+const mongoDBStore = ConnectMongoDB(session);
+const store = new MongoDBStore({
+    uri: String(process.env.MONGO_URL),
+    collection: "session",
+})
+
 
 /** 1-ENTRANCE **/
 const app =express();
@@ -13,7 +22,20 @@ app.use(express.static(path.join(__dirname, "public"))); //Public folder (CSS) n
 app.use(express.urlencoded({extended: true})); //HTML <form> dan kelgan ma'lumotlarni o'qish uchun. Traditional API ni support qiladi.
 app.use(express.json());   //Rest API ni support qiladi. /HTML <form> dan kelgan ma'lumotlarni o'qish uchun BODY REQUESTNI QABUL QILADI
 app.use(morgan(MORGAN_FORMAT)); //Logging standartni quradi
+
 /** 2-SESSIONS **/
+app.use(
+    session({
+        secret: String(process.env.SESSION_SECRET),
+        cookie: {
+            maxAge: 1000 * 360 *3, //3h
+        },
+        store: store,
+        resave: true,
+        saveUninitialized: true,
+    })
+);
+
 
 /** 3-VIEWS **/
 app.set('views',path.join(__dirname, "views")); // VIEWGA MANZIL KURSAYILYAPDI
