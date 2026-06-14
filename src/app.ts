@@ -8,7 +8,9 @@ import { T } from "./libs/types/common";
 
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
+
 //TCP 2
+
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
     uri: String(process.env.MONGO_URL),
@@ -17,6 +19,7 @@ const store = new MongoDBStore({
 
 
 /** 1-ENTRANCE **/
+
 const app =express();
 console.log("__dirname:", __dirname);
 app.use(express.static(path.join(__dirname, "public"))); //Public folder (CSS) ni ga ochadi
@@ -25,6 +28,7 @@ app.use(express.json());   //Rest API ni support qiladi. /HTML <form> dan kelgan
 app.use(morgan(MORGAN_FORMAT)); //Logging standartni quradi
 
 /** 2-SESSIONS **/
+
 app.use(
     session({
         secret: String(process.env.SESSION_SECRET),
@@ -37,9 +41,10 @@ app.use(
     })
 );
 
-app.use(function(req, res,next) {
+// EJS sahifalariga avtomatik uzatib turadi
+app.use(function(req, res, next) {    
     const sessionInstance = req.session as T;
-    res.locals.member = sessionInstance.member;
+    res.locals.member = sessionInstance.member;  //res.locals = browser local variable 
     next();
 });
 
@@ -47,6 +52,8 @@ app.use(function(req, res,next) {
 /** 3-VIEWS **/
 app.set('views',path.join(__dirname, "views")); // VIEWGA MANZIL KURSAYILYAPDI
 app.set("view engine", "ejs");
+
+
 
 /** 4-ROUTERS **/
 app.use("/admin", routerAdmin);   //  SSR

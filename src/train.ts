@@ -1,5 +1,13 @@
 
 
+
+
+
+
+
+
+
+
 /* 
 S-TASK
 
@@ -9,21 +17,14 @@ MASALAN: missing_number([3, 0, 1]) return 2
 
 //Yechim:
 
-const missing_number = (nums: number[]): number => {
-    const n = nums.length;
-    const jami = ( n * (n + 1)) / 2;
-    const asl = nums.reduce((sum, num) => sum + num, 0);
-    return jami - asl;
-}; 
+// const missing_number = (nums: number[]): number => {
+//     const n = nums.length;
+//     const jami = ( n * (n + 1)) / 2;
+//     const asl = nums.reduce((sum, num) => sum + num, 0);
+//     return jami - asl;
+// }; 
 
-console.log( missing_number([3, 0, 1]));
-
-
-
-
-
-
-
+// console.log( missing_number([3, 0, 1]));
 
 
 /* 
@@ -41,7 +42,6 @@ MASALAN: calculate("1+3") return 4;
 // };
 
 // console.log(calculate("1+3"));
-
 
 
 /* 
