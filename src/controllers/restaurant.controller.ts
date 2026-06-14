@@ -54,7 +54,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
 
 
         const newMember: MemberInput = req.body;
-        newMember.memberImage = file?.path;
+        newMember.memberImage = file?.path.replace(/\\/g,"/");
         newMember.memberType = MemberType.RESTAURANT;
         const result = await memberService.processSignup(newMember);
          //TODO: SESSIONS AUTHENTICATION
@@ -69,7 +69,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
         console.log("Error, processSignup:", err);
         const message = 
           err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
-        res.send(`<script> alert("${message}"); window.location.replace('admin/signup</script>`);
+        res.send(`<script> alert("${message}"); window.location.replace('admin/signup') </script>`);
 
     }
 }; 
@@ -93,7 +93,7 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
         console.log("Error, processLogin:", err);
         const message = 
           err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
-        res.send(`<script> alert("${message}"); window.location.replace('admin/login</script>`);
+        res.send(`<script> alert("${message}"); window.location.replace('admin/login') </script>`);
     }
 }; 
 
@@ -137,7 +137,7 @@ restaurantController.verifyRestaurant = (
     } else {
         const message = Message.NOT_AUTHENTICATED;
         res.send(
-            `<script> alert("${message}"); window.location.replace('/admin/login'); </script>`
+            `<script> alert("${message}"); window.location.replace('/admin/login') </script>`
         );
     }
 };
