@@ -113,7 +113,7 @@ restaurantController.logout = async (req: AdminRequest, res: Response) => {
 }; 
 
 
-
+// AUTHENTICATION LOGIN - TAMGA
 restaurantController.checkAuthSession = async (req: AdminRequest, res: Response) => {
     try {
         console.log("checkAuthSession");
@@ -125,6 +125,9 @@ restaurantController.checkAuthSession = async (req: AdminRequest, res: Response)
     }
 }; 
 
+
+
+// AUTHORIZATION LOGIN VA HUHUQ
 restaurantController.verifyRestaurant = (
     req: AdminRequest,
     res: Response,

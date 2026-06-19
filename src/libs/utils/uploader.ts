@@ -1,6 +1,6 @@
 
 import path from "path";
-import multer from "multer"; // HTML formdan kelgan fileni uqiydi
+import multer from "multer"; // Req -- HTML formdan kelgan fileni uqiydi
 import { v4 } from "uuid";
 
 

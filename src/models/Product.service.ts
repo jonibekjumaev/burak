@@ -27,9 +27,6 @@ class ProductService  {
 
 
 
-
-
-
     public async createNewProduct( input: ProductInput ): Promise<Product> {
     
         try {
@@ -42,6 +39,8 @@ class ProductService  {
 
     }
 
+
+    
     public async updateChosenProduct(id: string, input: ProductUpdateInput): Promise<Product> {
         // string => ObjectId
         id = shapeIntoMongooseObjectId(id);
