@@ -11,7 +11,8 @@ const memberSchema = new Schema({
 
  memberStatus: {
     type: String,
-    enum: MemberStatus.ACTIVE
+    enum: MemberStatus.ACTIVE,
+    default: MemberStatus.ACTIVE
  },
 
 memberNick: {
