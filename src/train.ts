@@ -12,11 +12,11 @@ Yuqoridagi misolda, ikkala arrayni birlashtirib, tartib raqam bo'yicha tartiblab
 
 //Yeshim:
 
-const mergeSortedArrays = (arr1: number[], arr2: number[]): number[] => {
-  return [...arr1, ...arr2].sort((a, b) => a - b);
-};
+// const mergeSortedArrays = (arr1: number[], arr2: number[]): number[] => {
+//   return [...arr1, ...arr2].sort((a, b) => a - b);
+// };
 
-console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+// console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
 
 
 
