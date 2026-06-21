@@ -44,7 +44,7 @@ class ProductService  {
     public async updateChosenProduct(id: string, input: ProductUpdateInput): Promise<Product> {
         // string => ObjectId
         id = shapeIntoMongooseObjectId(id);             //pastdagi method: 3ta argument oladi. 1) qaysi id ni uzgartirish. 2) yangi uzgartirish kk bulgan data.
-        const result = await this.productModel.findOneAndUpdate({ id: id }, input, { new: true }).exec();  // 3) bizga yangilangan malumotni qaytarsin degani
+        const result = await this.productModel.findOneAndUpdate({ _id: id }, input, { new: true }).exec();  // 3) bizga yangilangan malumotni qaytarsin degani
 
         if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
