@@ -9,7 +9,7 @@ import {
 
 export interface Product {
     _id: ObjectId;
-    productSTatus: ProductStatus;
+    productStatus: ProductStatus;
     productCollection: ProductCollection;
     productName: String;
     productPrice: number;
@@ -17,13 +17,13 @@ export interface Product {
     productSize: ProductSize;
     productVolume: number;
     productDesc?: string;
-    productImage: string[];
+    productImages: string[];
     productView: number;
 }
 
 
 export interface ProductInput {
-    productSTatus?: ProductStatus;
+    productStatus?: ProductStatus;
     productCollection: ProductCollection;
     productName: String;
     productPrice: number;
@@ -31,13 +31,13 @@ export interface ProductInput {
     productSize?: ProductSize;
     productVolume?: number;
     productDesc?: string;
-    productImage?: string[];
+    productImages?: string[];
     productView?: number;
 }
 
 export interface ProductUpdateInput {
     _id: ObjectId;
-    productSTatus?: ProductStatus;
+    productStatus?: ProductStatus;
     productCollection?: ProductCollection;
     productName?: String;
     productPrice?: number;
@@ -45,6 +45,6 @@ export interface ProductUpdateInput {
     productSize?: ProductSize;
     productVolume?: number;
     productDesc?: string;
-    productImage?: string[];
+    productImages?: string[];
     productView?: number;
 }

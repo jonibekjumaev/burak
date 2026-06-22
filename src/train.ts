@@ -16,19 +16,19 @@ Keyingi namunada ham xuddi shunday xolat takrorlanmoqda.
 
 //Yechim:
 
-const sumOdds = (num: number): number => {
-    let count = 0;
-    for (let i = 0; i < num; i++) {
-        if (i % 2 !== 0) {
-            count++
-        }
-    }
-    return count;
-};
+// const sumOdds = (num: number): number => {
+//     let count = 0;
+//     for (let i = 0; i < num; i++) {
+//         if (i % 2 !== 0) {
+//             count++
+//         }
+//     }
+//     return count;
+// };
 
 
-console.log(sumOdds(9));
-console.log(sumOdds(11));
+// console.log(sumOdds(9));
+// console.log(sumOdds(11));
 
 
 
