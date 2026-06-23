@@ -1,4 +1,36 @@
 
+/*
+TASK V
+
+Shunday function yozing, uni string parametri bo'lsin.
+Va bu function stringdagi har bir harfni o'zi bilan
+necha marotaba taktorlanganligini ko'rsatuvchi object qaytarsin.
+  
+MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
+
+*/
+//Yechim:
+
+const countChars = (str: string): Record<string, number> => {
+  const result: Record<string, number> = {};
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+
+    if (result[char]) {
+      result[char] = result[char] + 1;
+    } else {
+      result[char] = 1;
+    }
+  }
+
+  return result;
+};
+
+console.log(countChars("hello"));
+
+
+
 
 /* 
 TASK U
