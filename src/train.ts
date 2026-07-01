@@ -1,4 +1,27 @@
 
+/*
+TASK Y
+
+Shunday function yozing, uni 2'ta array parametri bo'lsin.
+Bu function ikkala arrayda ham ishtirok etgan bir xil
+qiymatlarni yagona arrayga joylab qaytarsin.
+
+MASALAN: findIntersection([1,2,3], [3,2,0]) return [2,3]
+
+Yuqoridagi misolda, argument sifatida berilayotgan array'larda
+o'xshash sonlar mavjud. Function'ning vazifasi esa ana shu
+ikkala array'da ishtirok etgan o'xshash sonlarni yagona arrayga
+joylab return qilmoqda.
+*/
+
+//Yechim:
+function findIntersection(arr1: number[], arr2: number[]): number[] {
+    return arr1.filter(item => arr2.includes(item));
+}
+
+
+console.log(findIntersection([1, 2, 3], [3, 2, 0]));
+
 
 
 /* 
@@ -19,38 +42,28 @@ tarkibida kalit sifatida 2 marotaba takrorlanganligi uchun 2 soni return qilmoqd
 
 //Yechim:
 
-const countOccurrences = (obj: Record<string, any>, key: string): number => {
-  let count = 0;
+// const countOccurrences = (obj: Record<string, any>, key: string): number => {
+//   let count = 0;
 
-  for (const k in obj) {
-    if (k === key) {
-      count++;
-    }
+//   for (const k in obj) {
+//     if (k === key) {
+//       count++;
+//     }
 
-    if (typeof obj[k] === "object" && obj[k] !== null) {
-      count += countOccurrences(obj[k], key);
-    }
-  }
+//     if (typeof obj[k] === "object" && obj[k] !== null) {
+//       count += countOccurrences(obj[k], key);
+//     }
+//   }
 
-  return count;
-};
+//   return count;
+// };
 
-console.log(
-  countOccurrences(
-    { model: "Bugatti", steer: { model: "HANKOOK", size: 30 } },
-    "model"
-  )
-);
-
-
-
-
-
-
-
-
-
-
+// console.log(
+//   countOccurrences(
+//     { model: "Bugatti", steer: { model: "HANKOOK", size: 30 } },
+//     "model"
+//   )
+// );
 
 /*
 TASK W
@@ -79,8 +92,6 @@ asoslanib 3 bo'lakga bo'linib qaytmoqda. Qolgani esa o'z holati qolyapti
 // };
 
 // console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
-
-
 
 
 /*
@@ -114,8 +125,6 @@ MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
 // console.log(countChars("hello"));
 
 
-
-
 /* 
 TASK U
 
@@ -145,12 +154,6 @@ Keyingi namunada ham xuddi shunday xolat takrorlanmoqda.
 
 // console.log(sumOdds(9));
 // console.log(sumOdds(11));
-
-
-
-
-
-
 
 
 
