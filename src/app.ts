@@ -5,6 +5,7 @@ import routerAdmin from "./router-admin";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 import { T } from "./libs/types/common";
+import cookieParser from "cookie-parser";
 
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, "public"))); //Public folder (CSS) n
 app.use(express.urlencoded({extended: true})); //HTML <form> dan kelgan ma'lumotlarni o'qish uchun. Traditional API ni support qiladi.
 app.use(express.json());   //Rest API ni support qiladi. /HTML <form> dan kelgan ma'lumotlarni o'qish uchun BODY REQUESTNI QABUL QILADI
 app.use(morgan(MORGAN_FORMAT)); //Logging standartni quradi
+app.use(cookieParser());
 
 /** 2-SESSIONS **/
 
