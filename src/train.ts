@@ -16,13 +16,13 @@ sonlarni topib, ularni hisoblab yig'indisini qaytarmoqda
 */
 
 //Yechim:
-function sumEvens(arr: number[]): number {
-    return arr.filter(num => num % 2 === 0).reduce((sum, num) => sum + num, 0);
-}
+// function sumEvens(arr: number[]): number {
+//     return arr.filter(num => num % 2 === 0).reduce((sum, num) => sum + num, 0);
+// }
 
 
-console.log(sumEvens([1, 2, 3]))
-console.log(sumEvens([1, 2, 3, 2]))
+// console.log(sumEvens([1, 2, 3]))
+// console.log(sumEvens([1, 2, 3, 2]))
 
 
 
