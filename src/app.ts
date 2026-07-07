@@ -24,6 +24,7 @@ const store = new MongoDBStore({
 const app =express();
 console.log("__dirname:", __dirname);
 app.use(express.static(path.join(__dirname, "public"))); //Public folder (CSS) ni ga ochadi
+app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({extended: true})); //HTML <form> dan kelgan ma'lumotlarni o'qish uchun. Traditional API ni support qiladi.
 app.use(express.json());   //Rest API ni support qiladi. /HTML <form> dan kelgan ma'lumotlarni o'qish uchun BODY REQUESTNI QABUL QILADI
 app.use(morgan(MORGAN_FORMAT)); //Logging standartni quradi
