@@ -68,7 +68,7 @@ public async signup(input: MemberInput): Promise<Member> {
 
         if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
-        return result
+        return result;
     }
 
 
@@ -81,6 +81,18 @@ public async signup(input: MemberInput): Promise<Member> {
 
         return result;
         
+    }
+
+
+    public async getTopUsers (): Promise<Member[]> {
+        const result = await this.memberModel.find({
+            memberStatus: MemberStatus.ACTIVE,
+            memberPoints: { $gte: 1},
+        }).sort({ memberPoints: -1 }).limit(4).exec();   // -1 = "asc"  -   +1 = "desc"
+
+        if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+        
+        return result;
     }
 
   /** SSR */
