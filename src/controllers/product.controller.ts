@@ -2,14 +2,43 @@ import { Request, Response } from "express";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { T } from "../libs/types/common";
 import ProductService from "../models/Product.service";
-import { ProductInput, ProductUpdateInput } from "../libs/types/product";
+import { ProductInput, ProductInquiry, ProductUpdateInput } from "../libs/types/product";
 import { AdminRequest } from "../libs/types/members";
+import { ProductCollection } from "../libs/enums/product.enum";
 
 const productService = new ProductService();
 
 const productController: T ={};
 
 /** SPA */
+
+productController.getProducts = async (req: Request, res: Response) => {
+    try {
+        console.log("getProducts");
+        
+        const {order, page, limit, productCollection, search } = req.query;
+        console.log(`page: ${page}, order: ${order}`);
+        const inquiry: ProductInquiry = {
+            limit: Number(limit),
+            page: Number(page),
+            order: String(order),
+        }
+
+        if (productCollection) 
+            inquiry.productCollection = productCollection as ProductCollection;
+        if (search) inquiry.search = String(search);
+
+        const result = await productService.getProducts(inquiry);
+
+
+        res.status(HttpCode.OK).json(result);
+    } catch (err) {
+        console.log("Error, getProducts", err);
+        if (err instanceof Errors) res.status(err.code).json(err);
+        else res.status(Errors.standart.code).json(Errors.standart);
+    }
+}
+
 
 
 /** SSR */
