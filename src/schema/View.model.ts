@@ -1,16 +1,16 @@
 import mongoose, { Schema } from "mongoose";
-import { viewGroup } from "../libs/enums/view.enum";
+import { ViewGroup } from "../libs/enums/view.enum";
 
 
 
 const viewSchema = new Schema ({ 
     viewGroup: {
     type: String,
-    enum: viewGroup,
+    enum: ViewGroup,
     required: true
     },
 
-    memberid: {
+    memberId: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: "Member"

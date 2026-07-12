@@ -43,7 +43,6 @@ productController.getProducts = async (req: Request, res: Response) => {
 
 productController.getProduct = async (req: ExtendedRequest, res: Response) => {
     try{
-        console.log("getProduct");
 
         const { id }= req.params;
         const memberId = req.member?._id ?? null,
