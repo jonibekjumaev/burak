@@ -30,7 +30,7 @@ app.use(express.json());   //Rest API ni support qiladi. /HTML <form> dan kelgan
 app.use(morgan(MORGAN_FORMAT)); //Logging standartni quradi
 app.use(cookieParser());
 
-/** 2-SESSIONS **/
+/** 2-SESSIONS **/ // authentication va authoriziration uchun ishlatyapmiz
 
 app.use(
     session({
