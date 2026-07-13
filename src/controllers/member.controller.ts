@@ -165,7 +165,6 @@ memberController.verifyAuth = async (
 
 memberController.retriveAuth = async (
     req:ExtendedRequest,
-    res:Response, 
     next: NextFunction
     ) => {
     try {
