@@ -39,7 +39,7 @@ routerAdmin.post(
     productController.createNewProduct);
 
 routerAdmin.post(
-    "/product/:id",    // :id = degani bu yerda harqamday narsa kelishi mumkun men buni id deb nomlayman
+    "/product/:id",    // Params :id = degani bu yerda params keladi har qanday narsa kelishi mumkun men buni id deb nomlayman
     restaurantController.verifyRestaurant,  //AUTHORIZATION
     productController.updateChosenProduct);
 

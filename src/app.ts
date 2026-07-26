@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import path from "path";
 import router from "./router";
@@ -27,8 +28,12 @@ app.use(express.static(path.join(__dirname, "public"))); //Public folder (CSS) n
 app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({extended: true})); //HTML <form> dan kelgan ma'lumotlarni o'qish uchun. Traditional API ni support qiladi.
 app.use(express.json());   //Rest API ni support qiladi. /HTML <form> dan kelgan ma'lumotlarni o'qish uchun BODY REQUESTNI QABUL QILADI
-app.use(morgan(MORGAN_FORMAT)); //Logging standartni quradi
+app.use(cors({
+    credentials: true,
+    origin: true
+}))
 app.use(cookieParser());
+app.use(morgan(MORGAN_FORMAT)); //Logging standartni quradi
 
 /** 2-SESSIONS **/ // authentication va authoriziration uchun ishlatyapmiz
 

@@ -7,22 +7,28 @@ import OrderModel from "../schema/Order.model";
 import OrderItemModel from "../schema/OrderItem.model";
 import { ObjectId } from "mongoose";
 import MemberService from "./Member.service";
+import ProductService from "./Product.service";
+import ProductModel from "../schema/Product.model";
 
 
 class OrderService {
     private readonly orderModel;
     private readonly orderItemModel;
     private readonly memberService;
+    private readonly productService;
+    private readonly productModel;
 
     constructor() {
         this.orderModel = OrderModel;
         this.orderItemModel = OrderItemModel;
+        this.productModel = ProductModel;
         this.memberService = new MemberService;
+        this.productService = new ProductService;
     }
 
     public async createOrder (member: Member, input: OrderItemInput[] ): Promise<Order> {
         const memberId = shapeIntoMongooseObjectId(member._id);
-        console.log("input:", input);
+
         const amount = input.reduce(( accumulator: number, item: OrderItemInput) => {
             return accumulator + item.itemPrice * item.itemQuantity;
         }, 0);
@@ -37,7 +43,6 @@ class OrderService {
 
 
             const orderId = newOrder._id;
-            console.log("orderId:", orderId);
 
             await this.recordOrderItem(orderId, input);
 
@@ -103,19 +108,42 @@ class OrderService {
          orderId = shapeIntoMongooseObjectId(input.orderId),
          orderStatus = input.orderStatus;
 
-         const result = this.orderModel.findByIdAndUpdate({
+         const result = await this.orderModel.findOneAndUpdate(
+        {
             memberId: memberId,
             _id: orderId,
-         },  { orderStatus: orderStatus}, { new: true }
+         },  
+         { orderStatus: orderStatus}, 
+         { new: true }
         )
          .exec();
-
+     
          if (!result) 
             throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
          if (orderStatus === OrderStatus.PROCESS) {
             await this.memberService.addMemberPoint(member, 1);
          }
+
+         // productLeftCount dan - ayirish
+
+         // 1. OrderItems'larni olish
+         
+         const orderItems = await this.orderItemModel
+         .find({ orderId: orderId})
+         .exec();
+         console.log("ordered product list:", orderItems);
+
+         // 2. Har bir mahsulot sonini kamaytir
+
+         await Promise.all(
+            orderItems.map( async (item) => {
+                await this.productModel.findByIdAndUpdate(
+                    item.productId,
+                    { $inc: {productLeftCount: -item.itemQuantity } }
+                ).exec();
+            })
+         )
          
 
          return result;
