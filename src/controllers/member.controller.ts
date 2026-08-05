@@ -31,9 +31,10 @@ memberController.getRestaurant = async (req: Request, res: Response) => {
 memberController.signup = async (req: Request, res: Response) => {
     try {
         console.log("signup");
-        const input: MemberInput = req.body,
-         result: Member = await memberService.signup(input),
-         token = await authService.createToken(result);
+        const input: MemberInput = req.body;
+         if (req.file) input.memberImage = req.file.path.replace(/\\/, "/");
+         const result: Member = await memberService.signup(input);
+         const token = await authService.createToken(result);
          
 
          res.cookie("accessToken", token, {
@@ -126,6 +127,7 @@ memberController.getTopUsers = async ( req: Request, res: Response ) => {
         const result = await memberService.getTopUsers();
 
         res.status(HttpCode.OK).json(result);
+         console.log("getTopUsers:----", result);
 
     } catch (err) {
         console.log("Error, getTopUsers:", err);

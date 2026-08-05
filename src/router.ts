@@ -8,8 +8,13 @@ import orderController from "./controllers/order.controller";
 
 /** Member */
 router.get("/member/restaurant", memberController.getRestaurant);
-router.post("/member/signup", memberController.signup);
+
+router.post("/member/signup", 
+      uploader("members").single("memberImage"),
+      memberController.signup);
+
 router.post("/member/login", memberController.login);
+
 router.post("/member/logout", 
     memberController.verifyAuth,
     memberController.logout
