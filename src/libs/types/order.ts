@@ -2,8 +2,6 @@ import { ObjectId } from "mongoose";
 import { OrderStatus } from "../enums/order.enum";
 import { Product } from "./product";
 
-
-
 export interface OrderItem {
   _id: ObjectId;
   itemQuantity: number;
@@ -28,11 +26,14 @@ export interface Order {
 }
 
 export interface OrderItemInput {
-    reduce(arg0: (accumulator: number, item: OrderItemInput) => number, arg1: number): unknown;
-    itemQuantity: number;
-    itemPrice: number;
-    productId: ObjectId;
-    orderId?: ObjectId;
+  reduce(
+    arg0: (accumulator: number, item: OrderItemInput) => number,
+    arg1: number,
+  ): unknown;
+  itemQuantity: number;
+  itemPrice: number;
+  productId: ObjectId;
+  orderId?: ObjectId;
 }
 
 export interface OrderInquiry {

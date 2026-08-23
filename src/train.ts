@@ -1,4 +1,3 @@
-
 /* 
 TASK Z
 
@@ -20,11 +19,8 @@ sonlarni topib, ularni hisoblab yig'indisini qaytarmoqda
 //     return arr.filter(num => num % 2 === 0).reduce((sum, num) => sum + num, 0);
 // }
 
-
 // console.log(sumEvens([1, 2, 3]))
 // console.log(sumEvens([1, 2, 3, 2]))
-
-
 
 /*
 TASK Y
@@ -46,10 +42,7 @@ joylab return qilmoqda.
 //     return arr1.filter(item => arr2.includes(item));
 // }
 
-
 // console.log(findIntersection([1, 2, 3], [3, 2, 0]));
-
-
 
 /* 
 TASK X
@@ -105,7 +98,7 @@ return [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]];
 Yuqoridagi namunada berilayotgan array ikkinchi parametr 3'ga
 asoslanib 3 bo'lakga bo'linib qaytmoqda. Qolgani esa o'z holati qolyapti
 */
-//Yechim: 
+//Yechim:
 
 // const chunkArray = (arr: number[], size: number): number[][] => {
 //   const result: number[][] = [];
@@ -119,7 +112,6 @@ asoslanib 3 bo'lakga bo'linib qaytmoqda. Qolgani esa o'z holati qolyapti
 // };
 
 // console.log(chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
-
 
 /*
 TASK V
@@ -151,7 +143,6 @@ MASALAN: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
 
 // console.log(countChars("hello"));
 
-
 /* 
 TASK U
 
@@ -178,11 +169,8 @@ Keyingi namunada ham xuddi shunday xolat takrorlanmoqda.
 //     return count;
 // };
 
-
 // console.log(sumOdds(9));
 // console.log(sumOdds(11));
-
-
 
 /*
 TASK T
@@ -218,10 +206,9 @@ MASALAN: missing_number([3, 0, 1]) return 2
 //     const jami = ( n * (n + 1)) / 2;
 //     const asl = nums.reduce((sum, num) => sum + num, 0);
 //     return jami - asl;
-// }; 
+// };
 
 // console.log( missing_number([3, 0, 1]));
-
 
 /* 
 R-TASK
@@ -230,7 +217,7 @@ Shunday function yozing, u string parametrga ega bolsin. String "1+2" holatda pa
 MASALAN: calculate("1+3") return 4;
 */
 
-//yechim: 
+//yechim:
 
 // const calculate = (expression: string): number => {
 //   const [a, b] = expression.split("+");
@@ -238,7 +225,6 @@ MASALAN: calculate("1+3") return 4;
 // };
 
 // console.log(calculate("1+3"));
-
 
 /* 
 TASK Q:
@@ -260,12 +246,9 @@ Ushbu misolda, 'model' string, objectning propertysiga mos kelganligi uchun 'tru
 // const result = hasProperty({ name: "BMW", model:"M3" }, "model");
 // console.log("natija:", result);
 
-
-
-
-/*  Project standarts:
-    -Logging standarts
-    -Naming standarts
+/*  Project standards:
+    -Logging standards
+    -Naming standards
         function, method, variable => CAMEL  
         class => PASCAL                     
         folder, file => KEBAB

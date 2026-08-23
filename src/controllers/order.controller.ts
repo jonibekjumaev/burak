@@ -7,67 +7,56 @@ import { OrderInquiry, OrderUpdateInput } from "../libs/types/order";
 import { OrderStatus } from "../libs/enums/order.enum";
 
 const orderController: T = {};
-const orderService = new OrderService;
-
+const orderService = new OrderService();
 
 orderController.createOrder = async (req: ExtendedRequest, res: Response) => {
-try {
+  try {
     console.log("createOrder");
 
     const result = await orderService.createOrder(req.member, req.body);
 
-
     res.status(HttpCode.CREATED).json(result);
-} catch (err) {
-     console.log("Error, createOrder", err);
+  } catch (err) {
+    console.log("Error, createOrder", err);
     if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standart.code).json(Errors.standart);
-}
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
 };
 
-
 orderController.getMyOrders = async (req: ExtendedRequest, res: Response) => {
-try {
+  try {
     console.log("getMyOrder");
 
     const { page, limit, orderStatus } = req.query;
     const inquiry: OrderInquiry = {
-        limit: Number(limit),
-        page: Number(page),
-        orderStatus: orderStatus as OrderStatus
+      limit: Number(limit),
+      page: Number(page),
+      orderStatus: orderStatus as OrderStatus,
     };
 
     const result = await orderService.getMyOrders(req.member, inquiry);
-    
-    
-
 
     res.status(HttpCode.CREATED).json(result);
-} catch (err) {
-     console.log("Error, getMyOrder", err);
+  } catch (err) {
+    console.log("Error, getMyOrder", err);
     if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standart.code).json(Errors.standart);
-}
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
 };
 
-
-
 orderController.updateOrder = async (req: ExtendedRequest, res: Response) => {
-try {
+  try {
     console.log("updateOrder");
     const input: OrderUpdateInput = req.body;
 
     const result = await orderService.updateOrder(req.member, input);
 
-
     res.status(HttpCode.CREATED).json(result);
-} catch (err) {
-     console.log("Error, updateOrder", err);
+  } catch (err) {
+    console.log("Error, updateOrder", err);
     if (err instanceof Errors) res.status(err.code).json(err);
-    else res.status(Errors.standart.code).json(Errors.standart);
-}
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
 };
 
-
-
-export default  orderController;
+export default orderController;

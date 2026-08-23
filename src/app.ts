@@ -15,56 +15,54 @@ import ConnectMongoDB from "connect-mongodb-session";
 
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
-    uri: String(process.env.MONGO_URL),
-    collection: "session",
-})
-
+  uri: String(process.env.MONGO_URL),
+  collection: "session",
+});
 
 /** 1-ENTRANCE **/
 
-const app =express();
+const app = express();
 console.log("__dirname:", __dirname);
 app.use(express.static(path.join(__dirname, "public"))); //Public folder (CSS) ni ga ochadi
 app.use("/uploads", express.static("./uploads"));
-app.use(express.urlencoded({extended: true})); //HTML <form> dan kelgan ma'lumotlarni o'qish uchun. Traditional API ni support qiladi.
-app.use(express.json());   //Rest API ni support qiladi. /HTML <form> dan kelgan ma'lumotlarni o'qish uchun BODY REQUESTNI QABUL QILADI
-app.use(cors({
+app.use(express.urlencoded({ extended: true })); //HTML <form> dan kelgan ma'lumotlarni o'qish uchun. Traditional API ni support qiladi.
+app.use(express.json()); //Rest API ni support qiladi. /HTML <form> dan kelgan ma'lumotlarni o'qish uchun BODY REQUESTNI QABUL QILADI
+app.use(
+  cors({
     credentials: true,
-    origin: true
-}))
+    origin: true,
+  }),
+);
 app.use(cookieParser());
-app.use(morgan(MORGAN_FORMAT)); //Logging standartni quradi
+app.use(morgan(MORGAN_FORMAT)); //Logging standardni quradi
 
 /** 2-SESSIONS **/ // authentication va authoriziration uchun ishlatyapmiz
 
 app.use(
-    session({
-        secret: String(process.env.SESSION_SECRET),
-        cookie: {
-            maxAge: 1000 * 3600 * 6, //6h
-        },
-        store: store,
-        resave: true,
-        saveUninitialized: true,
-    })
+  session({
+    secret: String(process.env.SESSION_SECRET),
+    cookie: {
+      maxAge: 1000 * 3600 * 6, //6h
+    },
+    store: store,
+    resave: true,
+    saveUninitialized: true,
+  }),
 );
 
 // EJS sahifalariga avtomatik uzatib turadi
-app.use(function(req, res, next) {    
-    const sessionInstance = req.session as T;
-    res.locals.member = sessionInstance.member;  //res.locals = browser local variable 
-    next();
+app.use(function (req, res, next) {
+  const sessionInstance = req.session as T;
+  res.locals.member = sessionInstance.member; //res.locals = browser local variable
+  next();
 });
 
-
 /** 3-VIEWS **/
-app.set('views',path.join(__dirname, "views")); // VIEWGA MANZIL KURSAYILYAPDI
+app.set("views", path.join(__dirname, "views")); // VIEWGA MANZIL KURSAYILYAPDI
 app.set("view engine", "ejs");
 
-
-
 /** 4-ROUTERS **/
-app.use("/admin", routerAdmin);   //  SSR
-app.use("/", router);             // SPA
+app.use("/admin", routerAdmin); //  SSR
+app.use("/", router); // SPA
 
 export default app;
